@@ -6,6 +6,8 @@ namespace GenerateGanttJSON
 {
     public class Task
     {
+        [JsonProperty("id")]
+        public uint Id { get; set; }
         [JsonProperty("resource")]
         public string Resource { get; set; }
         [JsonProperty("name")]
@@ -15,11 +17,12 @@ namespace GenerateGanttJSON
         [JsonProperty("stop")]
         public DateTime Stop { get; set; }
         [JsonProperty("connect")]
-        public List<string> Connect { get; set; }
+        public List<uint> Connect { get; set; }
         
         
-        public Task(string resource, string name, DateTime start, DateTime stop, List<string> connect)
+        public Task(uint id ,string resource, string name, DateTime start, DateTime stop, List<uint> connect)
         {
+            Id = id;
             Resource = resource;
             Name = name;
             Start = start;
