@@ -26,7 +26,7 @@ namespace GenerateGanttJSON
                         for (var j = 0; j < rndCountTaskResource; j++)
                         {
                             var tmpNameTask = $"task{j}";
-                            tmpTasks.Add(new Task(_counterTask++,tmpNameTask,,,));
+                            tmpTasks.Add(new Task(_counterTask++,tmpNameTask,new DateTime(), new DateTime() , new List<uint>{1, 2, 3}));
                         }
                         resources.Add(new Resource(tmpNameResource, tmpTasks));
                     }
