@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace GenerateGanttJSON
 {
     internal class Program
     {
-        private Random _rnd = new Random();
-        private int _counterTask;
+        private static readonly Random _rnd = new Random();
+        private static uint _counterTask;
         public static void Main(string[] args)
         {
             if (args.Length == 2)
@@ -20,11 +21,19 @@ namespace GenerateGanttJSON
                     {
                         var rndCountTaskResource = _rnd.Next(0, numberTasks / 2);
                         numberTasks -= rndCountTaskResource;
+                        var tmpNameResource = $"resource{i}";
                         var tmpTasks = new List<Task>();
                         for (var j = 0; j < rndCountTaskResource; j++)
                         {
-                            
+                            var tmpNameTask = $"task{j}";
+                            tmpTasks.Add(new Task(_counterTask++,tmpNameTask,,,));
                         }
+                        resources.Add(new Resource(tmpNameResource, tmpTasks));
+                    }
+
+                    using (var streamWriter = new StreamWriter("TEST.json", false, System.Text.Encoding.Default))
+                    {
+                        streamWriter.WriteLine(resources.ToJson());
                     }
                 }
                 catch (Exception e)

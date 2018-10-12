@@ -18,10 +18,9 @@ namespace GenerateGanttJSON
         public List<uint> Connect { get; set; }
         
         
-        public Task(uint id ,string resource, string name, DateTime start, DateTime stop, List<uint> connect)
+        public Task(uint id, string name, DateTime start, DateTime stop, List<uint> connect)
         {
             Id = id;
-            Resource = resource;
             Name = name;
             Start = start;
             Stop = stop;
