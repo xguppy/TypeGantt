@@ -8,8 +8,6 @@ namespace GenerateGanttJSON
     {
         [JsonProperty("id")]
         public uint Id { get; set; }
-        [JsonProperty("resource")]
-        public string Resource { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("start")]
