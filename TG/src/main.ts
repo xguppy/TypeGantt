@@ -1,4 +1,3 @@
-function test(testvar: string) {
-    console.log(`Привет от ${testvar}`);
-}
-test("Test");
+import * as d3 from 'd3'
+
+alert(d3.version);
