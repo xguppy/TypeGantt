@@ -16,7 +16,10 @@ namespace GenerateGanttJSON
                 {
                     var numberResource = int.Parse(args[0]);
                     var numberTasks = int.Parse(args[1]);
+                    var numberMaxTasks = numberTasks;
                     var resources = new List<Resource>();
+                    var now = DateTime.Now;
+                    DateTime firstDate = now, secondDate = now;
                     for (var i = 0; i < numberResource; i++)
                     {
                         var rndCountTaskResource = _rnd.Next(0, numberTasks / 2);
@@ -26,7 +29,21 @@ namespace GenerateGanttJSON
                         for (var j = 0; j < rndCountTaskResource; j++)
                         {
                             var tmpNameTask = $"task{j}";
-                            tmpTasks.Add(new Task(_counterTask++,tmpNameTask,new DateTime(), new DateTime() , new List<uint>{1, 2, 3}));
+                            var rndCountConnect = _rnd.Next(0, numberMaxTasks/2);
+                            var lstConnect = new List<uint>();
+                            int k = 0;
+                            while (k < rndCountConnect)
+                            {
+                                uint rndConnect = (uint)_rnd.Next(0, numberMaxTasks);
+                                if (!lstConnect.Contains(rndConnect))
+                                {
+                                    lstConnect.Add(rndConnect);
+                                    ++k;
+                                }
+                            }
+                            firstDate.AddHours(1.0d);
+                            secondDate.AddHours(_rnd.Next(1, 5));
+                            tmpTasks.Add(new Task(_counterTask++, tmpNameTask, firstDate, secondDate, lstConnect));
                         }
                         resources.Add(new Resource(tmpNameResource, tmpTasks));
                     }
