@@ -2,8 +2,8 @@
 *~
 
 # build
-[Oo]bj/
-[Bb]in/
+GenerateGanttJSON/[Oo]bj/
+GenerateGanttJSON/[Bb]in/
 packages/
 TestResults/
 
