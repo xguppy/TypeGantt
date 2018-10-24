@@ -4,8 +4,8 @@
 # build
 GenerateGanttJSON/[Oo]bj/
 GenerateGanttJSON/[Bb]in/
-packages/
-TestResults/
+GenerateGanttJSON/packages/
+GenerateGanttJSON/TestResults/
 
 # globs
 Makefile.in
