@@ -35,7 +35,7 @@ let xAxisGroup = plotGroup.append('g')
     .classed('axis', true)
     .attr('transform', `translate(${0},${plotHeight})`)
     .call(xAxis);
-
+//Аналогично для оси ресурсов
 let yScale = d3.scaleBand()
     .range([plotHeight, 0]);
 let yAxis= d3.axisLeft(yScale);
@@ -43,16 +43,19 @@ let yAxisGroup = plotGroup.append('g')
     .classed('y', true)
     .classed('axis', true)
     .call(yAxis);
+
     d3.json<Resource[]>('tasks.json').then((data)=>
     {
+            //Массив ресурсов
             let prepared = data.map(d => {
-                let obj: Resource = {name: d.name, tasks: d.tasks}
+                let obj: Resource = {name: d.name, tasks: d.tasks}  //Соберем ресурс
                 return {
                     Resource : obj
                 }
                 });
-                yScale.domain(prepared.map(d => d.Resource.name));
-            yAxisGroup.call(yAxis);
+                yScale.domain(prepared.map(d => d.Resource.name));  //Добавил на ось
+                yAxisGroup.call(yAxis); //Обновим ось
+                //Тут будем рисовать "точки" из d.Resource.tasks
     }, 
     (error) =>      //Если ошибка
     {
