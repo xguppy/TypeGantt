@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import { timeFormat } from 'd3';
 
 //Определяем размеры и пространство вывода svg 
 const width = 960;
@@ -29,7 +28,7 @@ let plotHeight = height - plotMargins.top - plotMargins.bottom;
 let xScale = d3.scaleTime()
     .range([0, plotWidth]);
 //Опреедлим ось X, зададим 24 тика на оси от 00 часов до 00 часов
-let xAxis = d3.axisBottom(xScale).tickFormat(timeFormat("%H")).ticks(25);
+let xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%H")).ticks(25);
 let xAxisGroup = plotGroup.append('g')
     .classed('x', true)
     .classed('axis', true)
