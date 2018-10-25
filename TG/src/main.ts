@@ -28,14 +28,13 @@ let plotHeight = height - plotMargins.top - plotMargins.bottom;
 // Теперь определим размеры оси, и определим, то что ось временная
 let xScale = d3.scaleTime()
     .range([0, plotWidth]);
-//Опреедлим ось X, зададим 24 тика на оси от 00 часов до 00 часов
+//Опредлим ось X, зададим 24 тика на оси от 00 часов до 00 часов
 let xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%H")).ticks(25);
 let xAxisGroup = plotGroup.append('g')
     .classed('x', true)
     .classed('axis', true)
     .attr('transform', `translate(${0},${plotHeight})`)
     .call(xAxis);
-
 
 let yScale = d3.scaleBand()
     .range([plotHeight, 0]);
@@ -44,7 +43,6 @@ let yAxisGroup = plotGroup.append('g')
     .classed('y', true)
     .classed('axis', true)
     .call(yAxis);
-
     d3.json<Resource[]>('tasks.json').then((data)=>
     {
             let prepared = data.map(d => {
@@ -53,11 +51,7 @@ let yAxisGroup = plotGroup.append('g')
                     Resource : obj
                 }
                 });
-            yAxis.ticks(prepared.length);
-            prepared.forEach(element => {
-                yScale.domain(d3.extent(prepared, d => d.Resource.name));
-                console.log(element.Resource.name);
-            });
+                yScale.domain(prepared.map(d => d.Resource.name));
             yAxisGroup.call(yAxis);
     }, 
     (error) =>      //Если ошибка
