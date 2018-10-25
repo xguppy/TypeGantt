@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import {Resource} from './resource'
+
 //Определяем размеры и пространство вывода svg 
 const width = 960;
 const height = 480;
@@ -38,21 +39,28 @@ let xAxisGroup = plotGroup.append('g')
 
 let yScale = d3.scaleBand()
     .range([plotHeight, 0]);
-let yAxis=d3.axisLeft(yScale);
+let yAxis= d3.axisLeft(yScale);
 let yAxisGroup = plotGroup.append('g')
     .classed('y', true)
     .classed('axis', true)
     .call(yAxis);
 
-
-
-    d3.json<Resource[]>('task.json').then((data)=>
+    d3.json<Resource[]>('tasks.json').then((data)=>
     {
             let prepared = data.map(d => {
-                let obj = {name: d.name, tasks: d.tasks}
+                let obj: Resource = {name: d.name, tasks: d.tasks}
                 return {
                     Resource : obj
                 }
                 });
-            console.log(prepared);
+            yAxis.ticks(prepared.length);
+            prepared.forEach(element => {
+                yScale.domain(d3.extent(prepared, d => d.Resource.name));
+                console.log(element.Resource.name);
+            });
+            yAxisGroup.call(yAxis);
+    }, 
+    (error) =>      //Если ошибка
+    {
+        console.log(error);
     });
