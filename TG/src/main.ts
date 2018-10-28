@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import {Resource, Task} from './resource'
+import {timeParse} from "d3";
 
 //Определяем размеры и пространство вывода svg
 const width = 1200;
@@ -25,21 +26,35 @@ let plotGroup = svg.append('g')
 let plotWidth = width - plotMargins.left - plotMargins.right;
 // Высота
 let plotHeight = height - plotMargins.top - plotMargins.bottom;
+
+let startDate: Date = new Date(2018, 10, 25);
+let endDate: Date = new Date(2018, 10, 26);
 // Теперь определим размеры оси, и определим, то что ось временная
 let xScale = d3.scaleTime()
-    .range([0, plotWidth]);
+    .range([0, plotWidth])
+    .domain([startDate, endDate]);
+let xInvAxis  =d3.axisBottom(xScale).ticks(25).tickSize(height).tickFormat(d3.timeFormat(""));
 //Опредлим ось X, зададим 24 тика на оси от 00 часов до 00 часов
-let xAxis = d3.axisTop(xScale).tickFormat(d3.timeFormat("%H:%M")).ticks(25);
+let xAxis = d3.axisTop(xScale).ticks(25).tickFormat(d3.timeFormat("%H:%M"));
 let xAxisGroup = plotGroup.append('g')
+    .attr('color', 'blue')
     .classed('x', true)
     .classed('axis', true)
     .attr('transform', `translate(${0},${0})`)
     .call(xAxis);
+let xInvAxisGroup = plotGroup.append('g')
+    .attr('color', 'blue')
+    .style('stroke-dasharray', ('3, 3'))
+    .classed('x', true)
+    .classed('axis', true)
+    .attr('transform', `translate(${0},${0})`)
+    .call(xInvAxis);
 //Аналогично для оси ресурсов
 let yScale = d3.scaleBand()
     .range([plotHeight, 0]);
-let yAxis= d3.axisLeft(yScale);
+let yAxis= d3.axisLeft(yScale); //.tickSize(-1200);
 let yAxisGroup = plotGroup.append('g')
+    .attr('color', 'blue')
     .classed('y', true)
     .classed('axis', true)
     .call(yAxis);
@@ -57,8 +72,6 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         var dataBound = pointsGroup.selectAll('.post') //
             .data(data);
 
-        console.log(data);
-
         dataBound //Удалим повторяющие точки (вроде не надо исходя из условий задачи)
             .exit()
             .remove();
@@ -66,14 +79,31 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         var enterSelection = dataBound //Добавим точки
             .enter()
             .append('g')
-            .classed('post', true);
-
-        enterSelection.append('circle') // Стиль "точки"
-            .attr('r', 2)
+            .classed('post', true)
+            .attr('stroke', 'black')
+            .attr('strokeWidth', 1)
             .style('fill', 'red');
 
-        enterSelection.merge(dataBound) //Обновим все точки и отрисуем на графике
-            .attr('transform', (d, i) => `translate(${xScale(d.tasks[i].start.getTime())},${yScale(d.name)})`);
+        data.forEach( item => {
+            item.tasks.forEach((interval, i) => {
+                var startdate: Date = new Date(interval.start);
+                var stopdate: Date = new Date(interval.stop);
+                startdate.setMonth(startdate.getMonth() + 1);
+                stopdate.setMonth(stopdate.getMonth() + 1);
+                var interv = xScale(stopdate) - xScale(startdate);
+
+                enterSelection.append('rect') // Стиль "точки"
+                    .attr('width', interv)
+                    .attr('height', plotHeight/data.length - plotMargins.top)
+                    .attr('rx', 3)
+                    .attr('ry', 3)
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + plotMargins.top/2})`);
+
+                //console.log(1); цикл проходит 5 раз по пяти таскам - проверено!!!
+            });
+        });
+
+        enterSelection.merge(dataBound); //Обновим все точки и отрисуем на графике
     },
     (error) =>      //Если ошибка
     {
