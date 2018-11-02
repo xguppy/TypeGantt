@@ -1,6 +1,7 @@
 [
     {
       "name": "Лаврова В. Ф.",
+      "status": "In Work",
       "tasks": 
       [
         {
@@ -8,6 +9,8 @@
           "name": "Заказать оборудование", 
           "start": "October 25, 2018 07:30:00",
           "stop": "October 25, 2018 08:00:00",
+          "baseColor": "#782222",
+          "lineColor": "#782222",
           "connect": [] 
         },
         {
@@ -15,38 +18,47 @@
           "name": "Оплатить счет",
           "start": "October 25, 2018 09:00:00",
           "stop": "October 25, 2018 10:00:00",
+          "baseColor": "#661111",
+          "lineColor": "#782222",
           "connect": [] 
         }
       ]
     },
     {
       "name": "Петров И. М.",
+      "status": "Break",
       "tasks": 
       [
         {
           "id" :  "3",
           "name": "Установить оборудование", 
           "start": "October 25, 2018 10:00:00", 
-          "stop": "October 25, 2018 14:00:00", 
+          "stop": "October 25, 2018 14:00:00",
+          "baseColor": "#e62525",
+          "lineColor": "#610e0e",
           "connect": [] 
         }
       ]
     },
     {
       "name": "Сергеев И. П.",
+      "status": "Holiday",
       "tasks": 
       [
         {
           "id" :  "4",
           "name": "Установить ПО", 
           "start": "October 25, 2018 14:00:00",
-          "stop": "October 25, 2018 17:00:00", 
+          "stop": "October 25, 2018 17:00:00",
+          "baseColor": "#db5656",
+          "lineColor": "#750c0c",
           "connect": [] 
         }
       ]
     },
     {
       "name": "Александрова А. С.",
+      "status": "Chill",
       "tasks": 
       [
         {
@@ -54,6 +66,8 @@
             "name" : "Составить график работы",
             "start" : "October 25, 2018 09:00:00",
             "stop": "October 25, 2018 11:00:00",
+            "baseColor": "#ebb7b7",
+            "lineColor": "#ebb7b7",
             "connect" : []
         }
       ] 
