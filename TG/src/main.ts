@@ -121,10 +121,10 @@ d3.json<Resource[]>('tasks.json').then((data)=>
 
                 enterSelection.append('rect') // Стиль "точки"
                     .attr('width', interv)
-                    .attr('height', plotHeight/data.length - plotMargins.top)
+                    .attr('height', barHeight)
                     .attr('rx', 3)
                     .attr('ry', 3)
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + plotMargins.top/2})`);
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + barHeight/2})`);
 
                 //console.log(1); цикл проходит 5 раз по пяти таскам - проверено!!!
             });

@@ -71,5 +71,46 @@
             "connect" : []
         }
       ] 
+    },
+    {
+      "name": "Скворцова А. Д.",
+      "status": "Chill",
+      "tasks": 
+      [
+        {
+            "id" : "6",
+            "name" : "Составить отчет",
+            "start" : "October 25, 2018 17:00:00",
+            "stop": "October 25, 2018 17:30:00",
+            "baseColor": "#ebb7b7",
+            "lineColor": "#ebb7b7",
+            "connect" : []
+        },
+        {
+          "id" : "7",
+          "name" : "Выдать зарплату",
+          "start" : "October 25, 2018 17:30:00",
+          "stop": "October 25, 2018 18:00:00",
+          "baseColor": "#ebb7b7",
+          "lineColor": "#ebb7b7",
+          "connect" : []
+        }
+      ] 
+    },
+    {
+      "name": "Лейщук П. В.",
+      "status": "In work",
+      "tasks": 
+      [
+        {
+            "id" : "8",
+            "name" : "Починить принтер",
+            "start" : "October 25, 2018 14:00:00",
+            "stop": "October 25, 2018 16:00:00",
+            "baseColor": "#ebb7b7",
+            "lineColor": "#ebb7b7",
+            "connect" : []
+        }
+      ] 
     }
   ]
