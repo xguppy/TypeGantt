@@ -108,8 +108,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .append('g')
             .classed('post', true)
             .attr('stroke', 'black')
-            .attr('strokeWidth', 1)
-            .style('fill', 'red');
+            .attr('strokeWidth', 1);
 
         data.forEach( item => {
             item.tasks.forEach((interval, i) => {
@@ -124,7 +123,8 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .attr('height', barHeight)
                     .attr('rx', 3)
                     .attr('ry', 3)
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + barHeight/2})`);
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + barHeight/2})`)
+                    .style('fill', interval.baseColor);
 
                 //console.log(1); цикл проходит 5 раз по пяти таскам - проверено!!!
             });
