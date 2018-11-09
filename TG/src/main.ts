@@ -89,7 +89,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .data(data)
             .append("g")
             .attr("transform", function(d) { return `translate(${xScale(startDate)-barWidth} , ${yScale(d.name)+barHeight/2});`});
-
+        var i = 0;
         data.forEach( item => 
         {
             bar.append("rect")
@@ -98,7 +98,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 .attr("stroke", "black")
                 .attr('strokeWidth', 5)
                 .style('fill', item.color);
-
+            
             bar.append("text")
                 .attr("x", 5)
                 .attr("y", barHeight/3)
@@ -110,7 +110,6 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 .attr("y", barHeight/3*2)
                 .attr("font-size", "0.75em")
                 .text(d=>d.status);  
-
             item.tasks.forEach((interval, i) => {
                 var startdate: Date = new Date(interval.start);
                 var stopdate: Date = new Date(interval.stop);
@@ -124,7 +123,9 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .attr('rx', 3)
                     .attr('ry', 3)
                     .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + barHeight/2})`)
-                    .style('fill', interval.baseColor);
+                    .style('fill', interval.baseColor)
+                    .append("svg:title")
+                    .text(interval.name);
 
                 //console.log(1); цикл проходит 5 раз по пяти таскам - проверено!!!
             });
