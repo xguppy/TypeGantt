@@ -89,27 +89,28 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .data(data)
             .append("g")
             .attr("transform", function(d) { return `translate(${xScale(startDate)-barWidth} , ${yScale(d.name)+barHeight/2});`});
-        var i = 0;
+        
+        bar.append("rect")
+            .attr("width", barWidth)
+            .attr("height", barHeight)
+            .attr("stroke", "black")
+            .attr('strokeWidth', 5)
+            .style('fill', d=>d.color);
+
+        bar.append("text")
+            .attr("x", 5)
+            .attr("y", barHeight/3)
+            .attr("font-size", "0.75em")
+            .text(d=> d.name);
+
+        bar.append("text")
+            .attr("x", 15)
+            .attr("y", barHeight/3*2)
+            .attr("font-size", "0.75em")
+            .text(d=>d.status);  
+
         data.forEach( item => 
         {
-            bar.append("rect")
-                .attr("width", barWidth)
-                .attr("height", barHeight)
-                .attr("stroke", "black")
-                .attr('strokeWidth', 5)
-                .style('fill', item.color);
-            
-            bar.append("text")
-                .attr("x", 5)
-                .attr("y", barHeight/3)
-                .attr("font-size", "0.75em")
-                .text(d=> d.name);
-
-            bar.append("text")
-                .attr("x", 15)
-                .attr("y", barHeight/3*2)
-                .attr("font-size", "0.75em")
-                .text(d=>d.status);  
             item.tasks.forEach((interval, i) => {
                 var startdate: Date = new Date(interval.start);
                 var stopdate: Date = new Date(interval.stop);
