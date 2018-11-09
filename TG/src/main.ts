@@ -5,6 +5,8 @@ import {timeParse} from "d3";
 //Определяем размеры и пространство вывода svg
 const width = 1200;
 const height = 480;
+const widthResource = 120;
+const heightResource = 60;
 
 let svg = d3.select('body')
     .append('svg')
@@ -50,8 +52,8 @@ let xInvAxisGroup = plotGroup.append('g')
     .attr('transform', `translate(${0},${0})`)
     .call(xInvAxis);
 //Аналогично для оси ресурсов
-let yScale = d3.scaleBand()
-    .range([plotHeight, 0]);
+
+let yScale = d3.scaleBand();
 let yAxis= d3.axisLeft(yScale); //.tickSize(-1200);
 let yAxisGroup = plotGroup.append('g')
     .attr('color', 'blue')
@@ -64,10 +66,8 @@ let pointsGroup = plotGroup.append('g')
 
 d3.json<Resource[]>('tasks.json').then((data)=>
     {
-        yScale.domain(data.map(d => d.name));  //Добавил на ось
-        //yAxisGroup.call(yAxis); //Обновим ось
-        let barHeight: number = 60;
-        let barWidth: number = 120;        
+        yScale.domain(data.map(d => d.name))  //Добавил на ось
+             .range([0, data.length*heightResource]);     
 
         //Тут будем рисовать "точки" из d.Resource.tasks
 
@@ -88,24 +88,24 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         let bar = d3.selectAll(".post") // объект для отрисовки ресурсов
             .data(data)
             .append("g")
-            .attr("transform", function(d) { return `translate(${xScale(startDate)-barWidth} , ${yScale(d.name)+barHeight/2});`});
+            .attr("transform", function(d) { return `translate(${xScale(startDate)-widthResource} , ${yScale(d.name)+heightResource/2});`});
         
         bar.append("rect")
-            .attr("width", barWidth)
-            .attr("height", barHeight)
+            .attr("width", widthResource)
+            .attr("height", heightResource)
             .attr("stroke", "black")
             .attr('strokeWidth', 5)
             .style('fill', d=>d.color);
 
         bar.append("text")
             .attr("x", 5)
-            .attr("y", barHeight/3)
+            .attr("y", heightResource/3)
             .attr("font-size", "0.75em")
             .text(d=> d.name);
 
         bar.append("text")
             .attr("x", 15)
-            .attr("y", barHeight/3*2)
+            .attr("y", heightResource/3*2)
             .attr("font-size", "0.75em")
             .text(d=>d.status);  
 
@@ -120,10 +120,10 @@ d3.json<Resource[]>('tasks.json').then((data)=>
 
                 enterSelection.append('rect') // Стиль "точки"
                     .attr('width', interv)
-                    .attr('height', barHeight)
+                    .attr('height', heightResource)
                     .attr('rx', 3)
                     .attr('ry', 3)
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + barHeight/2})`)
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + heightResource/2})`)
                     .style('fill', interval.baseColor)
                     .append("svg:title")
                     .text(interval.name);
