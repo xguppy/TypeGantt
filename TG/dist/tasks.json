@@ -2,6 +2,7 @@
     {
       "name": "Лаврова В. Ф.",
       "status": "In Work",
+      "color": "#21ff94",
       "tasks": 
       [
         {
@@ -27,6 +28,7 @@
     {
       "name": "Петров И. М.",
       "status": "Break",
+      "color": "#a1a100",
       "tasks": 
       [
         {
@@ -43,6 +45,7 @@
     {
       "name": "Сергеев И. П.",
       "status": "Holiday",
+      "color": "#9dd7b4",
       "tasks": 
       [
         {
@@ -59,6 +62,7 @@
     {
       "name": "Александрова А. С.",
       "status": "Chill",
+      "color": "#6066ca",
       "tasks": 
       [
         {
@@ -75,6 +79,7 @@
     {
       "name": "Скворцова А. Д.",
       "status": "Chill",
+      "color": "#4ac925",
       "tasks": 
       [
         {
@@ -100,6 +105,7 @@
     {
       "name": "Лейщук П. В.",
       "status": "In work",
+      "color": "#008282",
       "tasks": 
       [
         {

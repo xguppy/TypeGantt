@@ -2,6 +2,7 @@ export interface Resource // атрибуты ресурса
 {
     name: string;
     status: string;
+    color: string;
     tasks: Task[];
 }
 export interface Task // атрибуты задачи
