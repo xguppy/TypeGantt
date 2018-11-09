@@ -67,32 +67,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         yScale.domain(data.map(d => d.name));  //Добавил на ось
         //yAxisGroup.call(yAxis); //Обновим ось
         let barHeight: number = 60;
-        let barWidth: number = 120;
-        let bar = d3.selectAll("g")
-            .data(data)
-            .append("g")
-            .attr("transform", function(d) { return `translate(${-barWidth} , ${yScale(d.name)+barHeight/2});`});
-        console.log(-barWidth);
-        bar.append("rect")
-            .attr("width", barWidth)
-            .attr("height", barHeight)
-            .attr("stroke", "black")
-            .attr('strokeWidth', 5)
-            .style('fill', 'steelblue');
-
-        bar.append("text")
-            .attr("x", 15)
-            .attr("y", barHeight/3)
-            .attr("font-size", "1em")
-            .style('fill', 'black')
-            .text(d=> d.name);
-
-        bar.append("text")
-            .attr("x", 15)
-            .attr("y", barHeight/3*2)
-            .attr("font-size", "1em")
-            .style('fill', 'black')
-            .text(d=>d.status);  
+        let barWidth: number = 120;        
 
         //Тут будем рисовать "точки" из d.Resource.tasks
 
@@ -110,7 +85,32 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .attr('stroke', 'black')
             .attr('strokeWidth', 1);
 
-        data.forEach( item => {
+        let bar = d3.selectAll(".post") // объект для отрисовки ресурсов
+            .data(data)
+            .append("g")
+            .attr("transform", function(d) { return `translate(${xScale(startDate)-barWidth} , ${yScale(d.name)+barHeight/2});`});
+
+        data.forEach( item => 
+        {
+            bar.append("rect")
+                .attr("width", barWidth)
+                .attr("height", barHeight)
+                .attr("stroke", "black")
+                .attr('strokeWidth', 5)
+                .style('fill', item.color);
+
+            bar.append("text")
+                .attr("x", 5)
+                .attr("y", barHeight/3)
+                .attr("font-size", "0.75em")
+                .text(d=> d.name);
+
+            bar.append("text")
+                .attr("x", 15)
+                .attr("y", barHeight/3*2)
+                .attr("font-size", "0.75em")
+                .text(d=>d.status);  
+
             item.tasks.forEach((interval, i) => {
                 var startdate: Date = new Date(interval.start);
                 var stopdate: Date = new Date(interval.stop);
