@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
-import {Resource, Task} from './resource'
-import {timeParse} from "d3";
+import {Resource} from './resource'
 
 //Определяем размеры и пространство вывода svg
 const width = 1200;
@@ -63,14 +62,12 @@ let yAxisGroup = plotGroup.append('g')
 
 let pointsGroup = plotGroup.append('g')
     .classed('points', true);
-
 d3.json<Resource[]>('tasks.json').then((data)=>
     {
         yScale.domain(data.map(d => d.name))  //Добавил на ось
-             .range([0, data.length*heightResource]);     
+             .range([0, data.length * heightResource]);     
 
         //Тут будем рисовать "точки" из d.Resource.tasks
-
         var dataBound = pointsGroup.selectAll('.post') //
             .data(data);
 
@@ -88,14 +85,14 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         let bar = d3.selectAll(".post") // объект для отрисовки ресурсов
             .data(data)
             .append("g")
-            .attr("transform", function(d) { return `translate(${xScale(startDate)-widthResource} , ${yScale(d.name)+heightResource/2});`});
+            .attr("transform", function(d) { return `translate(${xScale(startDate)-widthResource}, ${yScale(d.name)+heightResource/2})`});
         
         bar.append("rect")
             .attr("width", widthResource)
             .attr("height", heightResource)
             .attr("stroke", "black")
             .attr('strokeWidth', 5)
-            .style('fill', d=>d.color);
+            .style('fill', d=> d.color);
 
         bar.append("text")
             .attr("x", 5)
@@ -117,7 +114,6 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 startdate.setMonth(startdate.getMonth() + 1);
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
-
                 enterSelection.append('rect') // Стиль "точки"
                     .attr('width', interv)
                     .attr('height', heightResource)

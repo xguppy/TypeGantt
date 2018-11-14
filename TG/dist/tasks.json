@@ -11,7 +11,6 @@
           "start": "October 25, 2018 07:30:00",
           "stop": "October 25, 2018 08:00:00",
           "baseColor": "#782222",
-          "lineColor": "#782222",
           "connect": [] 
         },
         {
@@ -20,7 +19,6 @@
           "start": "October 25, 2018 09:00:00",
           "stop": "October 25, 2018 10:00:00",
           "baseColor": "#661111",
-          "lineColor": "#782222",
           "connect": [] 
         }
       ]
@@ -37,7 +35,6 @@
           "start": "October 25, 2018 10:00:00", 
           "stop": "October 25, 2018 14:00:00",
           "baseColor": "#e62525",
-          "lineColor": "#610e0e",
           "connect": [] 
         }
       ]
@@ -54,7 +51,6 @@
           "start": "October 25, 2018 14:00:00",
           "stop": "October 25, 2018 17:00:00",
           "baseColor": "#db5656",
-          "lineColor": "#750c0c",
           "connect": [] 
         }
       ]
@@ -71,7 +67,6 @@
             "start" : "October 25, 2018 09:00:00",
             "stop": "October 25, 2018 11:00:00",
             "baseColor": "#ebb7b7",
-            "lineColor": "#ebb7b7",
             "connect" : []
         }
       ] 
@@ -88,7 +83,6 @@
             "start" : "October 25, 2018 17:00:00",
             "stop": "October 25, 2018 17:30:00",
             "baseColor": "#ebb7b7",
-            "lineColor": "#ebb7b7",
             "connect" : []
         },
         {
@@ -97,7 +91,6 @@
           "start" : "October 25, 2018 17:30:00",
           "stop": "October 25, 2018 18:00:00",
           "baseColor": "#ebb7b7",
-          "lineColor": "#ebb7b7",
           "connect" : []
         }
       ] 
@@ -114,7 +107,6 @@
             "start" : "October 25, 2018 14:00:00",
             "stop": "October 25, 2018 16:00:00",
             "baseColor": "#ebb7b7",
-            "lineColor": "#ebb7b7",
             "connect" : []
         }
       ] 

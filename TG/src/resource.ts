@@ -12,6 +12,5 @@ export interface Task // атрибуты задачи
     start: Date;
     stop: Date;
     baseColor: string;  //В Hex, пример: #ebb7b7
-    lineColor: string;
     connect: number[];
 }
