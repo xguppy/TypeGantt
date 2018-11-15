@@ -61,7 +61,8 @@ let yAxisGroup = plotGroup.append('g')
     .call(yAxis);
 
 let pointsGroup = plotGroup.append('g')
-    .classed('points', true);
+    .classed('points', true).append('g').classed('dataY', true);
+
 d3.json<Resource[]>('tasks.json').then((data)=>
     {
         yScale.domain(data.map(d => d.name))  //Добавил на ось
@@ -70,12 +71,12 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         //Тут будем рисовать "точки" из d.Resource.tasks
         var dataBound = pointsGroup.selectAll('.post') //
             .data(data);
-
+        
         dataBound //Удалим повторяющие точки (вроде не надо исходя из условий задачи)
             .exit()
             .remove();
 
-        var enterSelection = dataBound //Добавим точки
+        dataBound //Добавим точки
             .enter()
             .append('g')
             .classed('post', true)
@@ -90,6 +91,8 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         bar.append("rect")
             .attr("width", widthResource)
             .attr("height", heightResource)
+            .attr('rx', 3)
+            .attr('ry', 3)
             .attr("stroke", "black")
             .attr('strokeWidth', 5)
             .style('fill', d=> d.color);
@@ -114,7 +117,9 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 startdate.setMonth(startdate.getMonth() + 1);
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
-                enterSelection.append('rect') // Стиль "точки"
+                d3.select(".points").append('rect') // Стиль "точки", метод ON = создание системы эвентов
+                    .attr("stroke", "black")
+                    .attr('strokeWidth', 5)
                     .attr('width', interv)
                     .attr('height', heightResource)
                     .attr('rx', 3)
@@ -123,12 +128,9 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .style('fill', interval.baseColor)
                     .append("svg:title")
                     .text(interval.name);
-
-                //console.log(1); цикл проходит 5 раз по пяти таскам - проверено!!!
             });
         });
 
-        enterSelection.merge(dataBound); //Обновим все точки и отрисуем на графике
     },
     (error) =>      //Если ошибка
     {
