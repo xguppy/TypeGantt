@@ -10,15 +10,19 @@ namespace GenerateGanttJSON
         
         [JsonProperty("status")]
         public string Status { get; set; }
+        
+        [JsonProperty("color")]
+        public string Color { get; set; }
 
         [JsonProperty("tasks")]
         public List<Task> Tasks { get; set; }
 
-        public Resource(string name, List<Task> tasks, string status)
+        public Resource(string name, List<Task> tasks, string status, string color)
         {
             Name = name;
             Tasks = tasks;
             Status = status;
+            Color = color;
         }
 
         public static List<Resource> FromJson(string json) => JsonConvert.DeserializeObject<List<Resource>>(json, Converter.Settings);

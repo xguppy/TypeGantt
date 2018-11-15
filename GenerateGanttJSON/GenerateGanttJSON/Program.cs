@@ -42,12 +42,11 @@ namespace GenerateGanttJSON
                             firstDate.AddHours(1.0d);
                             secondDate.AddHours(_rnd.Next(1, 5));
                             var baseColor = $"#{_rnd.Next(0x1000000):X6}";
-                            var lineColor = $"#{_rnd.Next(0x1000000):X6}";
-                            tmpTasks.Add(new Task(_counterTask++, tmpNameTask, firstDate, secondDate, lstConnect, baseColor, lineColor));
+                            tmpTasks.Add(new Task(_counterTask++, tmpNameTask, firstDate, secondDate, lstConnect, baseColor));
                         }
                         var size = _rnd.Next(1, 15);
                         var statusName = new char[14];
-                        for (int j = 0; j < size; j++)
+                        for (var j = 0; j < size; j++)
                         {
                             if ((j & 1) == 0)
                             {
@@ -58,7 +57,8 @@ namespace GenerateGanttJSON
                                 statusName[j] = (char)_rnd.Next(48, 58);
                             }
                         }
-                        resources.Add(new Resource(tmpNameResource, tmpTasks, new string(statusName)));
+                        var resourceColor = $"#{_rnd.Next(0x1000000):X6}";
+                        resources.Add(new Resource(tmpNameResource, tmpTasks, new string(statusName), resourceColor));
                     }
 
                     using (var streamWriter = new StreamWriter("TEST.json", false, System.Text.Encoding.Default))

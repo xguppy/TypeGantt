@@ -1,0 +1,10 @@
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\bin\Debug\GenerateGanttJSON.exe
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\bin\Debug\GenerateGanttJSON.pdb
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\obj\Debug\GenerateGanttJSON.csprojAssemblyReference.cache
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\obj\Debug\GenerateGanttJSON.csproj.CoreCompileInputs.cache
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\obj\Debug\GenerateGanttJSON.csproj.CopyComplete
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\obj\Debug\GenerateGanttJSON.exe
+C:\Users\Guppy\Desktop\TypeGantt\TypeGantt\GenerateGanttJSON\GenerateGanttJSON\obj\Debug\GenerateGanttJSON.pdb
