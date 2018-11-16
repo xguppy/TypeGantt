@@ -5,7 +5,7 @@ import {Resource} from './resource'
 const width = 1200;
 const height = 480;
 const widthResource = 120;
-const heightResource = 60;
+const heightResource = 45;
 
 let svg = d3.select('body')
     .append('svg')
@@ -66,7 +66,8 @@ let pointsGroup = plotGroup.append('g')
 d3.json<Resource[]>('tasks.json').then((data)=>
     {
         yScale.domain(data.map(d => d.name))  //Добавил на ось
-             .range([0, data.length * heightResource]);     
+             .range([0-heightResource/2, data.length*heightResource]);     
+        console.log(data.length);
 
         //Тут будем рисовать "точки" из d.Resource.tasks
         var dataBound = pointsGroup.selectAll('.post') //

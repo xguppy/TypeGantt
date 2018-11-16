@@ -110,5 +110,21 @@
             "connect" : []
         }
       ] 
+    },
+    {
+      "name": "Лейщук П. В.",
+      "status": "In work",
+      "color": "#008282",
+      "tasks": 
+      [
+        {
+            "id" : "8",
+            "name" : "Починить принтер",
+            "start" : "October 25, 2018 14:00:00",
+            "stop": "October 25, 2018 16:00:00",
+            "baseColor": "#ebb7b7",
+            "connect" : []
+        }
+      ] 
     }
   ]
