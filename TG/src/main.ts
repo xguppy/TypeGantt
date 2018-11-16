@@ -100,14 +100,16 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         bar.append("text")
             .attr("x", 5)
             .attr("y", heightResource/3)
-            .attr("font-size", "0.75em")
-            .text(d=> d.name);
+            .style("font", "italic .75em sans-serif")
+            .text(d=> d.name)
+            .style('fill', d => d.fcolor);
 
         bar.append("text")
             .attr("x", 15)
             .attr("y", heightResource/3*2)
-            .attr("font-size", "0.75em")
-            .text(d=>d.status);  
+            .style("font", "italic .75em sans-serif")
+            .text(d=>d.status)
+            .style('fill', d => d.fcolor);  
 
         data.forEach( item => 
         {
@@ -128,6 +130,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .style('fill', interval.baseColor)
                     .append("svg:title")
                     .text(interval.name);
+                
             });
         });
 

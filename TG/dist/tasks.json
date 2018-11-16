@@ -3,6 +3,7 @@
       "name": "Лаврова В. Ф.",
       "status": "In Work",
       "color": "#21ff94",
+      "fcolor": "black",
       "tasks": 
       [
         {
@@ -11,6 +12,7 @@
           "start": "October 25, 2018 07:30:00",
           "stop": "October 25, 2018 08:00:00",
           "baseColor": "#782222",
+          "fcolor": "black",
           "connect": [] 
         },
         {
@@ -19,6 +21,7 @@
           "start": "October 25, 2018 09:00:00",
           "stop": "October 25, 2018 10:00:00",
           "baseColor": "#661111",
+          "fcolor": "black",
           "connect": [] 
         }
       ]
@@ -27,6 +30,7 @@
       "name": "Петров И. М.",
       "status": "Break",
       "color": "#a1a100",
+      "fcolor": "yellow",
       "tasks": 
       [
         {
@@ -35,6 +39,7 @@
           "start": "October 25, 2018 10:00:00", 
           "stop": "October 25, 2018 14:00:00",
           "baseColor": "#e62525",
+          "fcolor": "black",
           "connect": [] 
         }
       ]
@@ -43,6 +48,7 @@
       "name": "Сергеев И. П.",
       "status": "Holiday",
       "color": "#9dd7b4",
+      "fcolor": "red",
       "tasks": 
       [
         {
@@ -51,6 +57,7 @@
           "start": "October 25, 2018 14:00:00",
           "stop": "October 25, 2018 17:00:00",
           "baseColor": "#db5656",
+          "fcolor": "black",
           "connect": [] 
         }
       ]
@@ -59,6 +66,7 @@
       "name": "Александрова А. С.",
       "status": "Chill",
       "color": "#6066ca",
+      "fcolor": "aqua",
       "tasks": 
       [
         {
@@ -67,6 +75,7 @@
             "start" : "October 25, 2018 09:00:00",
             "stop": "October 25, 2018 11:00:00",
             "baseColor": "#ebb7b7",
+            "fcolor": "black",
             "connect" : []
         }
       ] 
@@ -75,6 +84,7 @@
       "name": "Скворцова А. Д.",
       "status": "Chill",
       "color": "#4ac925",
+      "fcolor": "black",
       "tasks": 
       [
         {
@@ -83,6 +93,7 @@
             "start" : "October 25, 2018 17:00:00",
             "stop": "October 25, 2018 17:30:00",
             "baseColor": "#ebb7b7",
+            "fcolor": "black",
             "connect" : []
         },
         {
@@ -91,6 +102,7 @@
           "start" : "October 25, 2018 17:30:00",
           "stop": "October 25, 2018 18:00:00",
           "baseColor": "#ebb7b7",
+          "fcolor": "black",
           "connect" : []
         }
       ] 
@@ -99,6 +111,7 @@
       "name": "Лейщук П. В.",
       "status": "In work",
       "color": "#008282",
+      "fcolor": "black",
       "tasks": 
       [
         {
@@ -107,6 +120,7 @@
             "start" : "October 25, 2018 14:00:00",
             "stop": "October 25, 2018 16:00:00",
             "baseColor": "#ebb7b7",
+            "fcolor": "black",
             "connect" : []
         }
       ] 

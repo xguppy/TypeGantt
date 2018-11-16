@@ -16,10 +16,12 @@ namespace GenerateGanttJSON
         public DateTime Stop { get; set; }
         [JsonProperty("baseColor")]
         public string BaseColor { get; set; }
+        [JsonProperty("fcolor")]
+        public string Fcolor { get; set; }
         [JsonProperty("connect")]
         public List<uint> Connect { get; set; }
 
-        public Task(uint id, string name, DateTime start, DateTime stop, List<uint> connect, string baseColor)
+        public Task(uint id, string name, DateTime start, DateTime stop, List<uint> connect, string baseColor, string fcolor)
         {
             Id = id;
             Name = name;
@@ -27,6 +29,7 @@ namespace GenerateGanttJSON
             Stop = stop;
             Connect = connect;
             BaseColor = baseColor;
+            Fcolor = fcolor;
         }
     }
 }

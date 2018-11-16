@@ -3,6 +3,7 @@ export interface Resource // атрибуты ресурса
     name: string;
     status: string;
     color: string;
+    fcolor: string;
     tasks: Task[];
 }
 export interface Task // атрибуты задачи
@@ -12,5 +13,6 @@ export interface Task // атрибуты задачи
     start: Date;
     stop: Date;
     baseColor: string;  //В Hex, пример: #ebb7b7
+    fcolor: string;
     connect: number[];
 }
