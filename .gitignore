@@ -1,6 +1,6 @@
 # Autosave files
 *~
-
+node_modules
 # build
 GenerateGanttJSON/[Oo]bj/
 GenerateGanttJSON/[Bb]in/

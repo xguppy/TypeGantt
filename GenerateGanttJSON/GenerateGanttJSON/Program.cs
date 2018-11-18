@@ -31,7 +31,7 @@ namespace GenerateGanttJSON
                             var tmpNameTask = $"task{j}";
                             var rndCountConnect = _rnd.Next(0, numberMaxTasks/2);
                             var lstConnect = new List<uint>();
-                            int k = 0;
+                            var k = 0;
                             while (k < rndCountConnect)
                             {
                                 uint rndConnect = (uint)_rnd.Next(0, numberMaxTasks);
@@ -39,8 +39,8 @@ namespace GenerateGanttJSON
                                 lstConnect.Add(rndConnect);
                                 ++k;
                             }
-                            firstDate.AddHours(1.0d);
-                            secondDate.AddHours(_rnd.Next(1, 5));
+                            firstDate = firstDate.AddHours(1.0d);
+                            secondDate = secondDate.AddHours(_rnd.Next(1, 5));
                             var baseColor = $"#{_rnd.Next(0x1000000):X6}";
                             var fontColor = $"#{_rnd.Next(0x1000000):X6}";
                             tmpTasks.Add(new Task(_counterTask++, tmpNameTask, firstDate, secondDate, lstConnect, baseColor, fontColor));
@@ -63,7 +63,7 @@ namespace GenerateGanttJSON
                         resources.Add(new Resource(tmpNameResource, tmpTasks, new string(statusName), resourceColor, resourceFontColor));
                     }
 
-                    using (var streamWriter = new StreamWriter("TEST.json", false, System.Text.Encoding.Default))
+                    using (var streamWriter = new StreamWriter("tasks.json", false, System.Text.Encoding.Default))
                     {
                         streamWriter.WriteLine(resources.ToJson());
                     }
