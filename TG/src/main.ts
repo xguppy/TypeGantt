@@ -86,7 +86,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
         let bar = d3.selectAll(".post") // объект для отрисовки ресурсов
             .data(data)
             .append("g")
-            .attr("transform", function(d) { return `translate(${xScale(startDate)-widthResource}, ${yScale(d.name)+heightResource/2})`});
+            .attr("transform", function(d) { return `translate(${xScale(startDate)-widthResource}, ${yScale(d.name)})`});          
         
         bar.append("rect")
             .attr("width", widthResource)
@@ -102,14 +102,16 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .attr("y", heightResource/3)
             .style("font", "italic .75em sans-serif")
             .text(d=> d.name)
-            .style('fill', d => d.fcolor);
-
+            .style('fill', d => d.fcolor);         
+                        
         bar.append("text")
             .attr("x", 15)
             .attr("y", heightResource/3*2)
             .style("font", "italic .75em sans-serif")
             .text(d=>d.status)
             .style('fill', d => d.fcolor);  
+
+        let block=d3.select(".points"); // для вывода задач
 
         data.forEach( item => 
         {
@@ -119,18 +121,26 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 startdate.setMonth(startdate.getMonth() + 1);
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
-                d3.select(".points").append('rect') // Стиль "точки", метод ON = создание системы эвентов
+                
+                block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
                     .attr("stroke", "black")
                     .attr('strokeWidth', 5)
                     .attr('width', interv)
                     .attr('height', heightResource)
                     .attr('rx', 3)
                     .attr('ry', 3)
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + heightResource/2})`)
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name)})`)
                     .style('fill', interval.baseColor)
-                    .append("svg:title")
+                    .append("title")
                     .text(interval.name);
-                
+
+                block.append("text")
+                    .append('tspan')
+                    .text(interval.name)
+                    .attr("x", xScale(startdate)+5)
+                    .attr("y", yScale(item.name)+heightResource/2)
+                    .attr('width', interv )
+                    .each( wrap );
             });
         });
 
@@ -139,3 +149,14 @@ d3.json<Resource[]>('tasks.json').then((data)=>
     {
         console.log(error);
     });
+
+    function wrap(  ) { // функция для обрезания лишнего текста
+        var self = d3.select(this),
+            textLength = self.node().getComputedTextLength(),
+            text = self.text();
+        while ( ( textLength > self.attr('width') )&& text.length > 0) {
+            text = text.slice(0, -2);
+            self.text(text + '...');
+            textLength = self.node().getComputedTextLength();
+        }
+    }
