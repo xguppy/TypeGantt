@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import {Resource} from './resource'
-
+import {context} from './callback'
 //Определяем размеры и пространство вывода svg
 const width = 1200;
 const height = 480;
@@ -123,6 +123,10 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 var interv = xScale(stopdate) - xScale(startdate);
                 
                 block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
+                    .on('click', function (d) {
+                        if(typeof(context[interval.event]) === "function")
+                            context[interval.event](this, interval);
+                    })
                     .attr("stroke", "black")
                     .attr('strokeWidth', 5)
                     .attr('width', interv)

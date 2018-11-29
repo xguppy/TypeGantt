@@ -11,6 +11,7 @@
           "name": "Заказать оборудование", 
           "start": "October 25, 2018 07:30:00",
           "stop": "October 25, 2018 08:00:00",
+          "event": "nameFunc",
           "baseColor": "#782222",
           "fcolor": "black",
           "connect": [] 
@@ -20,6 +21,7 @@
           "name": "Оплатить счет",
           "start": "October 25, 2018 09:00:00",
           "stop": "October 25, 2018 10:00:00",
+          "event": "showName",
           "baseColor": "#661111",
           "fcolor": "black",
           "connect": [] 
@@ -38,6 +40,7 @@
           "name": "Установить оборудование", 
           "start": "October 25, 2018 10:00:00", 
           "stop": "October 25, 2018 14:00:00",
+          "event": "chColor",
           "baseColor": "#e62525",
           "fcolor": "black",
           "connect": [] 
@@ -56,6 +59,7 @@
           "name": "Установить ПО", 
           "start": "October 25, 2018 14:00:00",
           "stop": "October 25, 2018 17:00:00",
+          "event": "showName",
           "baseColor": "#db5656",
           "fcolor": "black",
           "connect": [] 
@@ -119,6 +123,7 @@
             "name" : "Починить принтер",
             "start" : "October 25, 2018 14:00:00",
             "stop": "October 25, 2018 16:00:00",
+            "event": "showName",
             "baseColor": "#ebb7b7",
             "fcolor": "black",
             "connect" : []

@@ -1,7 +1,8 @@
 {
     "files": [
         "src/main.ts",
-        "src/resource.ts"
+        "src/resource.ts",
+        "src/callback.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
