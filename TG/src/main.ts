@@ -111,8 +111,6 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             .text(d=>d.status)
             .style('fill', d => d.fcolor);  
 
-        let block=d3.select(".points"); // для вывода задач
-
         data.forEach( item => 
         {
             item.tasks.forEach((interval, i) => {
@@ -122,6 +120,10 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
                 
+                let block=d3.select(".post") // для вывода задач
+                    .append('g')
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name)})`);
+
                 block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
                     .on('click', function (d) {
                         if(typeof(context[interval.event]) === "function")
@@ -133,7 +135,6 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .attr('height', heightResource)
                     .attr('rx', 3)
                     .attr('ry', 3)
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name)})`)
                     .style('fill', interval.baseColor)
                     .append("title")
                     .text(interval.name);
@@ -141,8 +142,8 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 block.append("text")
                     .append('tspan')
                     .text(interval.name)
-                    .attr("x", xScale(startdate)+5)
-                    .attr("y", yScale(item.name)+heightResource/2)
+                    .attr("x", 5)
+                    .attr("y", heightResource/2)
                     .attr('width', interv )
                     .each( wrap );
             });
@@ -159,7 +160,7 @@ d3.json<Resource[]>('tasks.json').then((data)=>
             textLength = self.node().getComputedTextLength(),
             text = self.text();
         while ( ( textLength > self.attr('width') )&& text.length > 0) {
-            text = text.slice(0, -2);
+            text = text.slice(0, -1);
             self.text(text + '...');
             textLength = self.node().getComputedTextLength();
         }
