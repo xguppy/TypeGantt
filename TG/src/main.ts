@@ -120,15 +120,15 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
                 
-                let block=d3.select(".post") // для вывода задач
+                let block=d3.select(".points") // для вывода задач
                     .append('g')
-                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name)})`);
-
-                block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
+                    .attr('transform', `translate(${xScale(startdate)},${yScale(item.name)})`)
                     .on('click', function (d) {
                         if(typeof(context[interval.event]) === "function")
                             context[interval.event](this, interval);
-                    })
+                    });
+
+                block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
                     .attr("stroke", "black")
                     .attr('strokeWidth', 5)
                     .attr('width', interv)
