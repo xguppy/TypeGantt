@@ -1,0 +1,12 @@
+import * as d3 from 'd3'
+import {Resource} from './resource'
+function color (color: string)
+{
+document.bgColor= color;
+color = document.bgColor;
+var r = parseInt(color.substr(0,2),16);
+var g = parseInt(color.substr(2,2),16);
+var b = parseInt(color.substr(4,2),16);
+var i = ((r*299)+(g*587)+(b*114))/1000;
+return (i >= 128) ? 'black' : 'white';
+}

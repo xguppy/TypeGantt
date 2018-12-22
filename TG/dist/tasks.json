@@ -1,61 +1,133 @@
 [
-    {
-      "name": "Лаврова В. Ф.",
-      "tasks": 
-      [
-        {
-          "id"  :  "1",
-          "name": "Заказать оборудование", 
-          "start": "October 25, 2018 07:30:00",
-          "stop": "October 25, 2018 08:00:00",
-          "connect": [] 
-        },
-        {
-          "id" : "2",
-          "name": "Оплатить счет",
-          "start": "October 25, 2018 09:00:00",
-          "stop": "October 25, 2018 10:00:00",
-          "connect": [] 
-        }
-      ]
-    },
-    {
-      "name": "Петров И. М.",
-      "tasks": 
-      [
-        {
-          "id" :  "3",
-          "name": "Установить оборудование", 
-          "start": "October 25, 2018 10:00:00", 
-          "stop": "October 25, 2018 14:00:00", 
-          "connect": [] 
-        }
-      ]
-    },
-    {
-      "name": "Сергеев И. П.",
-      "tasks": 
-      [
-        {
-          "id" :  "4",
-          "name": "Установить ПО", 
-          "start": "October 25, 2018 14:00:00",
-          "stop": "October 25, 2018 17:00:00", 
-          "connect": [] 
-        }
-      ]
-    },
-    {
-      "name": "Александрова А. С.",
-      "tasks": 
-      [
-        {
-            "id" : "5",
-            "name" : "Составить график работы",
-            "start" : "October 25, 2018 09:00:00",
-            "stop": "October 25, 2018 11:00:00",
-            "connect" : []
-        }
-      ] 
-    }
-  ]
+  {
+    "name": "Лаврова В. Ф.",
+    "status": "In Work",
+    "color": "#21ff94",
+    "fcolor": "black",
+    "tasks": 
+    [
+      {
+        "id"  :  "1",
+        "name": "Заказать оборудование", 
+        "start": "October 25, 2018 07:30:00",
+        "stop": "October 25, 2018 08:00:00",
+        "event": "nameFunc",
+        "baseColor": "#782222",
+        "fcolor": "black",
+        "connect": [] 
+      },
+      {
+        "id" : "2",
+        "name": "Оплатить счет",
+        "start": "October 25, 2018 09:00:00",
+        "stop": "October 25, 2018 10:00:00",
+        "event": "showName",
+        "baseColor": "#661111",
+        "fcolor": "black",
+        "connect": [] 
+      }
+    ]
+  },
+  {
+    "name": "Петров И. М.",
+    "status": "Break",
+    "color": "#a1a100",
+    "fcolor": "yellow",
+    "tasks": 
+    [
+      {
+        "id" :  "3",
+        "name": "Установить оборудование", 
+        "start": "October 25, 2018 10:00:00", 
+        "stop": "October 25, 2018 14:00:00",
+        "event": "chColor",
+        "baseColor": "#e62525",
+        "fcolor": "black",
+        "connect": [] 
+      }
+    ]
+  },
+  {
+    "name": "Сергеев И. П.",
+    "status": "Holiday",
+    "color": "#9dd7b4",
+    "fcolor": "red",
+    "tasks": 
+    [
+      {
+        "id" :  "4",
+        "name": "Установить ПО", 
+        "start": "October 25, 2018 14:00:00",
+        "stop": "October 25, 2018 17:00:00",
+        "event": "showName",
+        "baseColor": "#db5656",
+        "fcolor": "black",
+        "connect": [] 
+      }
+    ]
+  },
+  {
+    "name": "Александрова А. С.",
+    "status": "Chill",
+    "color": "#6066ca",
+    "fcolor": "aqua",
+    "tasks": 
+    [
+      {
+          "id" : "5",
+          "name" : "Составить график работы",
+          "start" : "October 25, 2018 09:00:00",
+          "stop": "October 25, 2018 11:00:00",
+          "baseColor": "#ebb7b7",
+          "fcolor": "black",
+          "connect" : []
+      }
+    ] 
+  },
+  {
+    "name": "Скворцова А. Д.",
+    "status": "Chill",
+    "color": "#4ac925",
+    "fcolor": "black",
+    "tasks": 
+    [
+      {
+          "id" : "6",
+          "name" : "Составить отчет",
+          "start" : "October 25, 2018 17:00:00",
+          "stop": "October 25, 2018 17:30:00",
+          "baseColor": "#ebb7b7",
+          "fcolor": "black",
+          "connect" : []
+      },
+      {
+        "id" : "7",
+        "name" : "Выдать зарплату",
+        "start" : "October 25, 2018 17:30:00",
+        "stop": "October 25, 2018 18:00:00",
+        "baseColor": "#ebb7b7",
+        "fcolor": "black",
+        "connect" : []
+      }
+    ] 
+  },
+  {
+    "name": "Лейщук П. В.",
+    "status": "In work",
+    "color": "#008282",
+    "fcolor": "black",
+    "tasks": 
+    [
+      {
+          "id" : "8",
+          "name" : "Починить принтер",
+          "start" : "October 25, 2018 14:00:00",
+          "stop": "October 25, 2018 16:00:00",
+          "event": "showName",
+          "baseColor": "#ebb7b7",
+          "fcolor": "black",
+          "connect" : []
+      }
+    ] 
+  }
+]
