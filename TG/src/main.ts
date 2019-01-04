@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import {Resource} from './resource'
 import {context} from './callback'
-import { selection } from 'd3';
+import { selection, transition } from 'd3';
 
 //Определяем размеры и пространство вывода svg
 const width = 1200;
@@ -43,7 +43,11 @@ let zoom = d3.zoom()
     .translateExtent([[0, 0], [plotWidth, plotHeight]])
     .on('zoom', zoomed);
 
-//svg.call(zoom);
+
+var drag = d3.drag()
+  .on("start", onStart)
+  .on("drag", onDrag)
+  .on("end", onEnd);
 
 // Теперь определим размеры оси, и определим, то что ось временная
 let xScale = d3.scaleTime()
@@ -102,16 +106,16 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                     .style('fill', item.color);
 
                 bar.append('text')
-                    .attr("x", 5)
+                    .attr("x", heightResource*2 - 10)
                     .attr("y", heightResource/3)
-                    .style("font", "italic .75em sans-serif")
+                    //.style("font", "italic .75em sans-serif")
                     .text(item.name)
                     .style('fill', item.fcolor);
 
                 bar.append('text')
-                    .attr("x", 15)
+                    .attr("x", heightResource*2 - 10)
                     .attr("y", heightResource/3*2)
-                    .style("font", "italic .75em sans-serif")
+                    //.style("font", "italic .75em sans-serif")
                     .text(item.status)
                     .style('fill', item.fcolor);
 
@@ -121,36 +125,39 @@ d3.json<Resource[]>('tasks.json').then((data)=>
                 startdate.setMonth(startdate.getMonth() + 1);
                 stopdate.setMonth(stopdate.getMonth() + 1);
                 var interv = xScale(stopdate) - xScale(startdate);
-                
+
                 let block = pointsGroup // для вывода задач
                     .append('g')
                     .classed('point', true)
                     .attr('transform', `translate(${xScale(startdate)},${yScale(item.name) + plotMargins.top/data.length})`)
-                    .attr('y', yScale(item.name) + plotMargins.top/data.length)
+                    .attr('xcoord', xScale(startdate))
+                    .attr('ycoord', yScale(item.name) + plotMargins.top/data.length)
                     .on('click', function (d) {
                         if(typeof(context[interval.event]) === "function")
                             context[interval.event](this, interval);
-                    });
+                    })
+                    .call(drag);
 
                 block.append("rect") // Стиль "точки", метод ON = создание системы эвентов
                     .classed('pointRect', true)
                     .attr('width', interv)
                     .attr('height', heightResource)
                     .style('fill', interval.baseColor)
+                    .attr('constWidth', interv)
                     .attr('stroke', 'black')
                     .append("title")
                     .text(interval.name);
 
                 block.append("text")
                     .append('tspan')
-                    .text(interval.name)
+                    .classed('pointText', true)
+                    .attr('constText', interval.name)
                     .attr("x", 5)
                     .attr("y", heightResource/2)
                     .attr('width', interv )
-                    .each( wrap );
+                    .text(wrap);
             });
         });
-        //enterSelection.merge(dataBound); //Обновим все точки и отрисуем на графике
     },
     (error) =>      //Если ошибка
     {
@@ -159,28 +166,50 @@ d3.json<Resource[]>('tasks.json').then((data)=>
 
     //Здесь должнен быть guреализован Zoom time-лайна
     function zoomed() {
-        d3.event.transform.y = 0;
-        //pointsGroup.selectAll('.point')
-            //.each (function() {
-            //    var x = +d3.select(this).attr("x");
-            //var y = +d3.select(this).attr("y");
-            //d3.select(this).attr("transform", 'translate('+x+','+y+')');
-            //var newWidth = +d3.select(this).select('.pointRect').attr('width');
-            //d3.select(this).select('.pointRect').attr('width', newWidth * d3.event.transform.k);
-            //console.log(newWidth);
-            //});
-
+        pointsGroup.selectAll('.point')
+        .each (function() {
+            var x = +d3.select(this).attr("xcoord");
+            var y = +d3.select(this).attr("ycoord");
+            var tempscale = 1/d3.event.transform.k;
+            var constWidth = +d3.select(this).select('.pointRect').attr('constWidth');
+            d3.select(this).select('.pointRect').attr('width', constWidth * d3.event.transform.k);
+            d3.select(this).select('.pointText')
+                .attr('width', constWidth * d3.event.transform.k)
+                .text(wrap);
+                
+            var tempTransform = 'translate ('+x+','+y+') scale ('+tempscale+',1)';
+            d3.select(this).attr('transform', tempTransform);
+        });
         pointsGroup.attr("transform", 'translate('+d3.event.transform.x+',0) scale('+d3.event.transform.k+',1)');
         xAxisGroup.call(xAxis.scale(d3.event.transform.rescaleX(xScale)));
     }
-    
-    function wrap(  ) { // функция для обрезания лишнего текста
-        var self = d3.select(this),
-            textLength = self.node().getComputedTextLength(),
-            text = self.text();
-        while ( ( textLength > self.attr('width') )&& text.length > 0) {
-            text = text.slice(0, -1);
-            self.text(text + '...');
-            textLength = self.node().getComputedTextLength();
+
+    function wrap( ) {
+        var text = d3.select(this).attr('constText');
+        var width = +d3.select(this).attr('width');
+        if (text.length*10 < width) {
+            return text;
+        }
+        else {
+            if (width < 60)
+                return '...';
+            else
+                return text.substring(0,width/10)+'..';
         }
     }
+
+    function onStart() {
+        d3.select(this).raise().classed("active", true);
+      }
+      
+      function onDrag() {
+          var tempTrans = d3.select(this).attr('transform');
+          var requiredString = tempTrans.substring(tempTrans.indexOf("(") + 1, tempTrans.indexOf(","));
+          d3.select(this).attr('xcoord', d3.event.x);
+          d3.select(this).attr('transform', tempTrans.replace(requiredString, d3.event.x));
+          console.log(tempTrans);
+      }
+      
+      function onEnd() {
+        d3.select(this).classed("active", false);
+      }
